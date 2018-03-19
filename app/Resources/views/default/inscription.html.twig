@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}Ceci est dans le block javascript{% endblock %}
+
+{% block body %}
+    {# Commentaire TWIG #}
+    Ceci est dans le body <a href="/">Lien</a>
+    {% block subbody %}{% endblock %}
+
+{% endblock %}
+
+{% block title %}
+    {{ parent() }}
+    Page inscription
+{% endblock %}

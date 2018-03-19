@@ -1,0 +1,8 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+# La route existe déjà dans le controller DefaultController en annotation
+#inscription:
+#    path:     /inscription
+#    defaults:  { _controller: AppBundle:Default:inscription }

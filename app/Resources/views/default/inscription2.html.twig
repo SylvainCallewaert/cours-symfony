@@ -1,0 +1,23 @@
+{% extends 'default/inscription.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    Body inscription 2
+
+    {#
+    COMMENTAIRE TWIG : uniquement côté serveur, ne fait pas partir du html généré
+    <img src="{{ asset('images/v0.PNG') }}" />
+    #}
+
+    <!--
+        Mon commentaire html : renvoyé au client, et donc visible dans le code source navigateur
+    -->
+
+   {{ user.username ~ " : " ~ user.password }}
+    <a href="{{ path('inscription') }}">Lien la page inscription</a>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }}
+    Page inscription 2
+{% endblock %}
