@@ -1,5 +1,7 @@
 {% extends 'default/inscription.html.twig' %}
 
+{% block lien %}{% endblock %}
+
 {% block body %}
     {{ parent() }}
     Body inscription 2
@@ -15,6 +17,8 @@
 
    {{ user.username ~ " : " ~ user.password }}
     <a href="{{ path('inscription') }}">Lien la page inscription</a>
+    {% include('default/include.html.twig') %}
+    {% include 'default/include.html.twig' %}
 {% endblock %}
 
 {% block title %}
