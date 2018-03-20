@@ -2,4 +2,12 @@
 
 {% block body %}
     Jeu
+
+    {% for art in articles %}
+        <div style="border:1px solid;">
+            <p style="font-weight:bold;">Titre de l'article : {{ art.title }} </p>
+            <p>{{ art.description | raw }}</p>
+            <p>{{ art.createdAt | date('d/m/Y') }} - {{ art.auteur }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}
