@@ -164,21 +164,19 @@ class AppController extends Controller
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository('AppBundle:Article')->find($id);
 
-        if (!$article instanceof Article) {
-            return new Response("L'article n'existe pas.");
+        if ($article instanceof Article) {
+            // remove pour dire à doctrine de supprimer l'objet en bdd
+            // lors du flush
+            $em->remove($article);
+
+            // flush : execute les requetes pour supprimer tous les objets
+            // sur lesquels on a préalablement passé à la méthode remove de $em
+            $em->flush();
         }
-
-        // remove pour dire à doctrine de supprimer l'objet en bdd
-        // lors du flush
-        $em->remove($article);
-
-        // flush : execute les requetes pour supprimer tous les objets
-        // sur lesquels on a préalablement passé à la méthode remove de $em
-        $em->flush();
 
         // après cette ligne, $article->getId() renvoie NULL
 
-        return new Response("L'article ".$id." a bien été supprimé");
+        return $this->redirectToRoute("jeu");
     }
 
     /**

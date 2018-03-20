@@ -9,6 +9,9 @@
             <a href="{{ path('article_affichage', {'id': art.id}) }}">
                 Lien vers l'article {{ art.id }}
             </a>
+            <a href="{{ path('article_delete', {'id': art.id}) }}">
+               Supprimer l'article {{ art.id }}
+            </a>
         </div>
     {% endfor %}
 {% endblock %}
