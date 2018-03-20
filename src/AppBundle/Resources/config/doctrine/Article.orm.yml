@@ -19,5 +19,6 @@ AppBundle\Entity\Article:
         auteur:
             type: string
             length: '255'
+            nullable: true
 
     lifecycleCallbacks: {  }
