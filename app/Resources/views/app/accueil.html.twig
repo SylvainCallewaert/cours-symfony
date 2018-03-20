@@ -8,5 +8,27 @@
 {% endblock %}
 
 {% block body %}
-    Accueil
+    Accueil<br />
+
+    {#
+    <div style="border:1px solid;">
+        <p style="font-weight:bold;">Titre de l'article : {{ article.title }} </p>
+        <p>{{ article.description | raw }}</p>
+        <p>{{ article.createdAt | date('d/m/Y') }} - {{ article.auteur }}</p>
+    </div>
+
+    <div style="border:1px solid;">
+        <p style="font-weight:bold;">Titre de l'article : {{ article2.title }} </p>
+        <p>{{ article2.description | raw }}</p>
+        <p>{{ article2.createdAt | date('d/m/Y') }} - {{ article2.auteur }}</p>
+    </div>
+    #}
+
+    {% for art in articles %}
+        <div style="border:1px solid;">
+            <p style="font-weight:bold;">Titre de l'article : {{ art.title }} </p>
+            <p>{{ art.description | raw }}</p>
+            <p>{{ art.createdAt | date('d/m/Y') }} - {{ art.auteur }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -1,0 +1,12 @@
+git clone {{URL}}
+cd NOM_DOSSIER_PROJET
+
+composer.phar update
+
+// si composer n'est pas dans les variables environnement
+php composer.phar update
+
+// à la fin de la commande, création du fichier parameters.yml
+// saisir les valeurs voules pour la BDD
+
+php bin/console assets:install --symlink

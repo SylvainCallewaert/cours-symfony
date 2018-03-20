@@ -8,13 +8,14 @@
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
     </head>
+
     <body>
         {% block menu %}
             <nav>
                 <a href="{{ path('nom_page_accueil') }}">Accueil</a>
                 <a href="{{ path('login') }}">Login</a>
                 <a href="{{ path('jeu') }}">Jeu</a>
-            </nav> 
+            </nav>
         {% endblock %}
 
         {% block body %}{% endblock %}

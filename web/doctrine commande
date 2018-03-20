@@ -1,0 +1,23 @@
+Après avoir configuré le fichier parameters avec les accès BDD :
+
+// pour créer la base
+doctrine:database:create
+
+// ensuite création ou modification des entités
+// mise à jour du schema de la base
+
+// --dump-sql pour voir les requetes qui s'appretent à être executées
+doctrine:schema:update --dump-sql
+
+// --force pour executer les requetes
+doctrine:schema:update --force
+
+// supprimer la base
+doctrine:database:drop --force
+
+// supprimer le schema de la BDD
+doctrine:schema:drop --force
+
+// j'ai mis à jour la configuration d'une entité via un fichier YML
+// je lance la commande pour mettre à jour les classes :
+doctrine:generate:entities AppBundle
