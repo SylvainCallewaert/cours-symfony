@@ -1,0 +1,11 @@
+{% extends 'parent.html.twig' %}
+
+{% block body %}
+    Jeu
+
+    <div style="border:1px solid;">
+        <p style="font-weight:bold;">Titre de l'article : {{ article.title }} </p>
+        <p>{{ article.description | raw }}</p>
+        <p>{{ article.createdAt | date('d/m/Y') }} - {{ article.auteur }}</p>
+    </div>
+{% endblock %}

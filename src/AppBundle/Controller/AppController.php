@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AppController extends Controller
 {
@@ -78,4 +79,37 @@ class AppController extends Controller
      *  créer une méthode qui récupére l'article ayant l'id = 1
      *  et l'afficher dans un nouveau template
      */
+    /**
+     * @Route("/article1", name="article1")
+     */
+    public function article1Action(Request $request)
+    {
+        // récupération de l'article en BDDD qui a l'ID 1
+
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('AppBundle:Article')->find(1);
+
+        if ($article == null) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('app/article1.html.twig', ['article' => $article]);
+    }
+
+    /**
+     * @Route("/article/{id}", name="article_affichage")
+     */
+    public function articleAction(Request $request, $id)
+    {
+        // récupération de l'article en BDDD qui a l'ID 1
+
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('AppBundle:Article')->find($id);
+
+        if ($article == null) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('app/article.html.twig', ['article' => $article]);
+    }
 }
