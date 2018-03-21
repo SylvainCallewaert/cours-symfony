@@ -1,0 +1,17 @@
+{% extends 'parent.html.twig' %}
+
+{% block body %}
+    Enregistrement d'un article
+
+    <div style="max-width:400px;margin:0 auto;">
+        {# {{ form(formArticle) }} #}
+
+        {{ form_start(formArticle, {'attr': {'class': 'form-horizontal classe-que-vous-voulez'}}) }}
+            {{ form_row(formArticle.valider) }}
+            {{ form_row(formArticle.description) }}
+            {{ form_row(formArticle.title) }}
+        {{ form_end(formArticle) }}
+    </div>
+
+    {# plus d'infos : https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony/creer-des-formulaires-avec-symfony #}
+{% endblock %}

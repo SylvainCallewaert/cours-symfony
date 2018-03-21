@@ -220,10 +220,4 @@ class AppController extends Controller
         return $this->render('app/article.html.twig', ['article' => $article]);
     }
 
-    /**
-     * Exo :
-     * Dans le template jeu.html.twig, créer un lien de suppression pour chaque article
-     *
-     */
-
 }

@@ -7,6 +7,9 @@ use AppBundle\Entity\Commentaire;
 use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -160,5 +163,58 @@ class ArticleController extends Controller
         }
 
         return $this->redirectToRoute("article_commentaire_list");
+    }
+
+    /**
+     * @Route("/insert-form", name="article_commentaire_insert_form")
+     */
+    public function insertArticleFormAction(Request $request)
+    {
+        // récupérer le paramètre GET qui a pour clé "nom"
+        /* SANS OBJET FORM DE SYMFONY
+        $nomGET = $request->query->get('nom');
+        var_dump($nomGET);
+        // récupérer le paramètre POST qui a pour clé "nom"
+        $nomPOST = $request->request->get('nom');
+        var_dump($nomPOST);exit;
+        // création instance d'un article manuellement
+
+        */
+
+        /*
+            $article->setCreatedAt(new \DateTime());
+            $article->setTitle("Titre article avec des commentaires");
+            $article->setDescription("Je suis un article avec des commentaires");
+            $article->setAuteur('fab');
+         */
+
+        $article = new Article();
+        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $article);
+
+        // On ajoute les champs de l'entité que l'on veut à notre formulaire
+        $formBuilder
+            ->add('title', TextType::class, ['label' => 'Titre de l\'article', 'required' => false])
+            ->add('description', Textarea::class, ['attr' => ['placeholder' => 'description de l\'article']])
+            ->add('valider', SubmitType::class)
+        ;
+        // on récupérer l'objet form
+        $form = $formBuilder->getForm();
+
+        // handle request qui appelle automatiquement les seeter de l'objet article
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                // On enregistre notre objet $article dans la base de données, par exemple
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($article);
+                $em->flush();
+                $this->addFlash('success', "L'article a bien été via un formulaire.");
+
+                return $this->redirectToRoute('article_commentaire_insert_form');
+            }
+        }
+
+        return $this->render('article/form.html.twig', ['formArticle' => $form->createView()]);
     }
 }
