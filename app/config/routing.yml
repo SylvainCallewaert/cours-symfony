@@ -2,6 +2,12 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
+article:
+    resource: '@AppBundle/Controller/ArticleController.php'
+    type: annotation
+    prefix: article-commentaire
+
+
 # La route existe déjà dans le controller DefaultController en annotation
 #inscription:
 #    path:     /inscription

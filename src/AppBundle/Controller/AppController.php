@@ -146,6 +146,11 @@ class AppController extends Controller
         // qui est soit null (insert), soit setté (update)
         $em->persist($article);
 
+        /*
+        $em->contains($article); // savoir si un persist ou remove a été appelé avec cet objet
+        $em->detach($article); // l'article ne sera plus enregistre en appelant detach
+        */
+
         // flush : execute les requetes pour modifier tous les objets
         // sur lesquels on a préalablement passé à la méthode persist de $em
         $em->flush();
@@ -193,6 +198,8 @@ class AppController extends Controller
         $redirectResponse = $this->redirect($url);
 
         // return $redirectResponse;
+
+        // raccourci des trois lignes de code précédentes
         return $this->redirectToRoute("jeu");
     }
 

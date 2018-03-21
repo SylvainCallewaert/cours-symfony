@@ -33,6 +33,19 @@ class Article
     private $auteur;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $commentaires;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id.
      *
      * @return int
@@ -136,5 +149,41 @@ class Article
     public function getAuteur()
     {
         return $this->auteur;
+    }
+
+    /**
+     * Add commentaire.
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire.
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        return $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

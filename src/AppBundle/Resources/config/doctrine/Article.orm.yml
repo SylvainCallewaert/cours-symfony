@@ -21,4 +21,11 @@ AppBundle\Entity\Article:
             length: '255'
             nullable: true
 
+    # lier deux entités : ici article est lié à commentaire
+    # et un article peut avoir plusieurs commentaires
+    oneToMany:
+        commentaires:
+            targetEntity: Commentaire
+            mappedBy: article
+
     lifecycleCallbacks: {  }

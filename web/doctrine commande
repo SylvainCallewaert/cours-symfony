@@ -18,6 +18,16 @@ doctrine:database:drop --force
 // supprimer le schema de la BDD
 doctrine:schema:drop --force
 
+// générer une entité (uniquement les champs, pas les relations entre entités)
+doctrine:generate:entity
+
 // j'ai mis à jour la configuration d'une entité via un fichier YML
 // je lance la commande pour mettre à jour les classes :
 doctrine:generate:entities AppBundle
+
+
+Commentaire :
+createdAt
+texte
+nom : nullable
+enabled

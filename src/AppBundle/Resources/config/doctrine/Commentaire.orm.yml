@@ -1,0 +1,30 @@
+AppBundle\Entity\Commentaire:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CommentaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+        texte:
+            type: text
+        nom:
+            type: string
+            length: '100'
+            nullable: true
+        enabled:
+            type: boolean
+
+    # lier deux entités : ici commentaire est lié à article
+    # et uplusieurs commentaires peuvent être liés à un seul article
+    manyToOne:
+        article:
+            targetEntity: Article
+            inversedBy: commentaires
+
+    lifecycleCallbacks: {  }

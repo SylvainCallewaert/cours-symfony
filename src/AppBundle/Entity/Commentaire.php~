@@ -3,9 +3,9 @@
 namespace AppBundle\Entity;
 
 /**
- * Article
+ * Commentaire
  */
-class Article
+class Commentaire
 {
     /**
      * @var int
@@ -20,17 +20,18 @@ class Article
     /**
      * @var string
      */
-    private $title;
+    private $texte;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $description;
+    private $nom;
 
     /**
-     * @var string
+     * @var bool
      */
-    private $auteur;
+    private $enabled;
+
 
     /**
      * Get id.
@@ -47,7 +48,7 @@ class Article
      *
      * @param \DateTime $createdAt
      *
-     * @return Article
+     * @return Commentaire
      */
     public function setCreatedAt($createdAt)
     {
@@ -67,74 +68,74 @@ class Article
     }
 
     /**
-     * Set title.
+     * Set texte.
      *
-     * @param string $title
+     * @param string $texte
      *
-     * @return Article
+     * @return Commentaire
      */
-    public function setTitle($title)
+    public function setTexte($texte)
     {
-        $this->title = $title;
+        $this->texte = $texte;
 
         return $this;
     }
 
     /**
-     * Get title.
+     * Get texte.
      *
      * @return string
      */
-    public function getTitle()
+    public function getTexte()
     {
-        return $this->title;
+        return $this->texte;
     }
 
     /**
-     * Set description.
+     * Set nom.
      *
-     * @param string $description
+     * @param string|null $nom
      *
-     * @return Article
+     * @return Commentaire
      */
-    public function setDescription($description)
+    public function setNom($nom = null)
     {
-        $this->description = $description;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get description.
+     * Get nom.
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription()
+    public function getNom()
     {
-        return $this->description;
+        return $this->nom;
     }
 
     /**
-     * Set auteur.
+     * Set enabled.
      *
-     * @param string $auteur
+     * @param bool $enabled
      *
-     * @return Article
+     * @return Commentaire
      */
-    public function setAuteur($auteur)
+    public function setEnabled($enabled)
     {
-        $this->auteur = $auteur;
+        $this->enabled = $enabled;
 
         return $this;
     }
 
     /**
-     * Get auteur.
+     * Get enabled.
      *
-     * @return string
+     * @return bool
      */
-    public function getAuteur()
+    public function getEnabled()
     {
-        return $this->auteur;
+        return $this->enabled;
     }
 }
