@@ -172,10 +172,27 @@ class AppController extends Controller
             // flush : execute les requetes pour supprimer tous les objets
             // sur lesquels on a préalablement passé à la méthode remove de $em
             $em->flush();
+
+            // stocker un message à afficher à l'utilisateur
+            $this->addFlash('success', "L'article ".$id." a bien été supprimé.");
+        }
+        else {
+            // stocker un message à afficher à l'utilisateur
+            $this->addFlash('danger', "L'article n'existe pas.");
         }
 
         // après cette ligne, $article->getId() renvoie NULL
 
+        /* MESSAGE FLASH */
+
+        //équivalent dans un controller de la fonction twig "path()"
+        // générer une url grâce à un nom de route et des paramètres à lui passer (optionnel)
+        $url = $this->generateUrl("jeu", []);
+        // créer un objet redirectresponse : redirige vers une nouvelle page
+        // à la différence de response qui renvoie une réponse au client
+        $redirectResponse = $this->redirect($url);
+
+        // return $redirectResponse;
         return $this->redirectToRoute("jeu");
     }
 
@@ -197,7 +214,7 @@ class AppController extends Controller
     }
 
     /**
-     *
+     * Exo :
      * Dans le template jeu.html.twig, créer un lien de suppression pour chaque article
      *
      */

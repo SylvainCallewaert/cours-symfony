@@ -1,7 +1,15 @@
 {% extends 'parent.html.twig' %}
 
 {% block body %}
-    Jeu
+    Jeu - Affichage de tous les articles
+
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
     {% for art in articles %}
         <div style="border:1px solid;">
