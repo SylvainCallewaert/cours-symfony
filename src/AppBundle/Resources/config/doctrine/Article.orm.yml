@@ -27,5 +27,12 @@ AppBundle\Entity\Article:
         commentaires:
             targetEntity: Commentaire
             mappedBy: article
+            cascade: ['all']
+
+    manyToMany:
+        tags:
+            targetEntity: Tag
+            mappedBy: articles
+            cascade: ['all']
 
     lifecycleCallbacks: {  }

@@ -32,6 +32,10 @@ class Commentaire
      */
     private $enabled;
 
+    /**
+     * @var \AppBundle\Entity\Article
+     */
+    private $article;
 
     /**
      * Get id.
@@ -137,5 +141,29 @@ class Commentaire
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Set article.
+     *
+     * @param \AppBundle\Entity\Article|null $article
+     *
+     * @return Commentaire
+     */
+    public function setArticle(\AppBundle\Entity\Article $article = null)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * Get article.
+     *
+     * @return \AppBundle\Entity\Article|null
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

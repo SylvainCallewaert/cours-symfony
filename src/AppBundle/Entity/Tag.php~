@@ -1,0 +1,83 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * Tag
+ */
+class Tag
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var string
+     */
+    private $text;
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set createdAt.
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Tag
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+
+    /**
+     * Set text.
+     *
+     * @param string $text
+     *
+     * @return Tag
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
+
+        return $this;
+    }
+
+    /**
+     * Get text.
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+}

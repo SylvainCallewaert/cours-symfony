@@ -1,0 +1,33 @@
+{% extends 'parent.html.twig' %}
+
+{% block body %}
+    Affichage d'un article
+
+    <div style="border:1px solid red;">
+        <p style="font-weight:bold;">Titre de l'article : {{ article.title }} </p>
+        <p>{{ article.description | raw }}</p>
+        <p>{{ article.createdAt | date('d/m/Y') }} - {{ article.auteur }}</p>
+
+        <p>Commentaires liés à cet article</p>
+        {% for commentaire in article.commentaires %}
+            {% if commentaire.enabled %}
+            <ul>
+                <li>
+                    <p>{{ commentaire.texte }}</p>
+                    <p>Auteur : {{ commentaire.nom }}</p>
+                    <p>Date commentaire {{ commentaire.createdAt | date('d/m/Y') }}</p>
+                </li>
+            </ul>
+            {% endif %}
+        {% endfor %}
+
+        <p>Tags liés à cet article</p>
+        <ul>
+        {% for tag in article.tags %}
+            <li>
+                {{ tag.text }}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

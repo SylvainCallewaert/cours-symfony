@@ -38,11 +38,17 @@ class Article
     private $commentaires;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $tags;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -160,6 +166,7 @@ class Article
      */
     public function addCommentaire(\AppBundle\Entity\Commentaire $commentaire)
     {
+        $commentaire->setArticle($this); // liaison bidirectionnelle
         $this->commentaires[] = $commentaire;
 
         return $this;
@@ -184,6 +191,43 @@ class Article
      */
     public function getCommentaires()
     {
+        // requete sql la première fois pour aller chercher les commentaires liés
         return $this->commentaires;
+    }
+
+    /**
+     * Add tag.
+     *
+     * @param \AppBundle\Entity\Tag $tag
+     *
+     * @return Article
+     */
+    public function addTag(\AppBundle\Entity\Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag.
+     *
+     * @param \AppBundle\Entity\Tag $tag
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeTag(\AppBundle\Entity\Tag $tag)
+    {
+        return $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
