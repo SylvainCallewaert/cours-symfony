@@ -28,11 +28,6 @@ class Article
     private $description;
 
     /**
-     * @var string
-     */
-    private $auteur;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $commentaires;
@@ -41,6 +36,11 @@ class Article
      * @var \Doctrine\Common\Collections\Collection
      */
     private $tags;
+
+    /**
+     * @var \AppBundle\Entity\User
+     */
+    private $user;
 
     /**
      * Constructor
@@ -135,30 +135,6 @@ class Article
     }
 
     /**
-     * Set auteur.
-     *
-     * @param string $auteur
-     *
-     * @return Article
-     */
-    public function setAuteur($auteur)
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
-
-    /**
-     * Get auteur.
-     *
-     * @return string
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
-
-    /**
      * Add commentaire.
      *
      * @param \AppBundle\Entity\Commentaire $commentaire
@@ -230,5 +206,29 @@ class Article
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \AppBundle\Entity\User|null $user
+     *
+     * @return Article
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \AppBundle\Entity\User|null
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

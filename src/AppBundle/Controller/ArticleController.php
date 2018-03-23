@@ -5,10 +5,12 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Article;
 use AppBundle\Entity\Commentaire;
 use AppBundle\Entity\Tag;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,12 +46,19 @@ class ArticleController extends Controller
      */
     public function insertArticleAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
         // création instance d'un article manuellement
         $article = new Article();
         $article->setCreatedAt(new \DateTime());
         $article->setTitle("Titre article avec des commentaires");
         $article->setDescription("Je suis un article avec des commentaires");
-        $article->setAuteur('fab');
+
+        $users = $em->getRepository('AppBundle:User')->findAll();
+        if (count($users) > 0) {
+            $user = $users[0];
+            $article->setUser($user);
+        }
 
         $commentaire = new Commentaire();
         $commentaire->setCreatedAt(new \DateTime());
@@ -89,12 +98,19 @@ class ArticleController extends Controller
      */
     public function insertArticleTagAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
         // création instance d'un article manuellement
         $article = new Article();
         $article->setCreatedAt(new \DateTime());
         $article->setTitle("Titre article avec des commentaires");
         $article->setDescription("Je suis un article avec des commentaires");
-        $article->setAuteur('fab');
+
+        $users = $em->getRepository('AppBundle:User')->findAll();
+        if (count($users) > 0) {
+            $user = $users[0];
+            $article->setUser($user);
+        }
 
         $commentaire = new Commentaire();
         $commentaire->setCreatedAt(new \DateTime());
@@ -194,7 +210,7 @@ class ArticleController extends Controller
         // On ajoute les champs de l'entité que l'on veut à notre formulaire
         $formBuilder
             ->add('title', TextType::class, ['label' => 'Titre de l\'article', 'required' => false])
-            ->add('description', Textarea::class, ['attr' => ['placeholder' => 'description de l\'article']])
+            ->add('description', TextareaType::class, ['attr' => ['placeholder' => 'description de l\'article']])
             ->add('valider', SubmitType::class)
         ;
         // on récupérer l'objet form
@@ -216,5 +232,23 @@ class ArticleController extends Controller
         }
 
         return $this->render('article/form.html.twig', ['formArticle' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/insert-user", name="article_commentaire_insert_user")
+     */
+    public function insertUserAction()
+    {
+        // création instance d'un user manuellement
+        $user = new User();
+        $user->setUsername("admin");
+        $user->setPassword("admin");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $this->addFlash('success', 'User bien enregistré');
+        return $this->redirectToRoute("article_commentaire_list");
     }
 }

@@ -16,10 +16,6 @@ AppBundle\Entity\Article:
             length: '255'
         description:
             type: text
-        auteur:
-            type: string
-            length: '255'
-            nullable: true
 
     # lier deux entités : ici article est lié à commentaire
     # et un article peut avoir plusieurs commentaires
@@ -28,6 +24,11 @@ AppBundle\Entity\Article:
             targetEntity: Commentaire
             mappedBy: article
             cascade: ['all']
+
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: articles
 
     manyToMany:
         tags:
